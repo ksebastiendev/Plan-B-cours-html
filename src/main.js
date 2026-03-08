@@ -91,6 +91,7 @@ function applyFilters() {
 
 function renderHome() {
   const categories = ['all', ...new Set(courses.map((course) => course.category))]
+  const currentYear = new Date().getFullYear()
 
   app.innerHTML = `
     <header class="border-b border-borderSubtle/80 bg-bg/95 backdrop-blur">
@@ -144,6 +145,24 @@ function renderHome() {
         <div id="coursesGrid" class="grid gap-5 md:grid-cols-2 xl:grid-cols-3"></div>
       </section>
     </main>
+
+    <footer class="mt-14 border-t border-borderSubtle/80 bg-surfaceSoft/40">
+      <div class="shell py-8 sm:py-10">
+        <div class="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
+          <div class="max-w-xl">
+            <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-blue-200">${t(state.locale, 'footerBrand')}</h2>
+            <p class="mt-3 text-sm text-textMuted">${t(state.locale, 'footerDescription')}</p>
+          </div>
+
+          <nav class="flex flex-col gap-2 text-sm">
+            <a href="#coursesGrid" class="text-textMuted transition hover:text-blue-200">${t(state.locale, 'footerBrowse')}</a>
+            <a href="#app" class="text-textMuted transition hover:text-blue-200">${t(state.locale, 'footerTop')}</a>
+          </nav>
+        </div>
+
+        <p class="mt-6 border-t border-borderSubtle/70 pt-4 text-xs text-textMuted">${t(state.locale, 'footerCopyright', currentYear)}</p>
+      </div>
+    </footer>
   `
 
   const searchInput = document.querySelector('#searchInput')

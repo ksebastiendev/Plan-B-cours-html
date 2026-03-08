@@ -2395,6 +2395,3 @@ Splicing modifie channel capacity
 
 
 Stale state → justice transaction
-
-
-
