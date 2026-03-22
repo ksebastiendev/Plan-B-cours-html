@@ -64,6 +64,58 @@ export const courses = [
       'Résumé transversal des notions critiques à mémoriser: infrastructure Internet, pipeline Bitcoin Core et enjeux Layer 2.',
     href: '/courses/masterclass-synthesis.html',
   },
+  {
+    slug: 'ark',
+    title: 'ARK — Bitcoin Advanced Layer',
+    subtitle: 'Liquidité mutuelle et coordination simplifiée au-delà de Lightning',
+    date: '2026-03-22',
+    author: 'Plan B Notes',
+    duration: '28 min read',
+    category: 'Layer 2',
+    tags: ['ARK', 'UX', 'Liquidity'],
+    description:
+      'ARK regroupe utilisateurs dans une pool off-chain avec coordination serveur: paiements rapides, onboarding simple, souveraineté Bitcoin préservée.',
+    href: '/courses/ark.html',
+  },
+  {
+    slug: 'bitcoin-offline-resilience',
+    title: 'Bitcoin Offline & Résilience Réseau',
+    subtitle: 'Transmission hors-ligne, mesh, radio et paiements Cashu',
+    date: '2026-03-22',
+    author: 'Plan B Notes',
+    duration: '35 min read',
+    category: 'Infrastructure',
+    tags: ['Offline', 'LoRa', 'Cashu'],
+    description:
+      'Transactions Bitcoin signées transportées offline via Bluetooth, LoRa, SMS ou papier; Cashu pour paiements instantanés hors-ligne; résilience en conditions dégradées.',
+    href: '/courses/bitcoin-offline-resilience.html',
+  },
+  {
+    slug: 'building-on-rgb',
+    title: 'Building on RGB — Smart Contracts & Assets',
+    subtitle: 'Validation côté client et actifs sur Bitcoin sans modification du protocole',
+    date: '2026-03-22',
+    author: 'Plan B Notes',
+    duration: '32 min read',
+    category: 'Protocols',
+    tags: ['RGB', 'Smart Contracts', 'Assets'],
+    description:
+      'RGB permet actifs, tokens et smart contracts sur Bitcoin via validation client-side: confidentialité élevée, scalabilité, ancrage Taproot.',
+    href: '/courses/building-on-rgb.html',
+  },
+  {
+    slug: 'connecting-bitcoin-layers',
+    title: 'Connecting Bitcoin Layers',
+    subtitle: 'Architecture multi-couches: Bitcoin → Lightning → Assets → Wallet',
+    date: '2026-03-22',
+    author: 'Plan B Notes',
+    duration: '42 min read',
+    category: 'Architecture',
+    tags: ['Layers', 'Lightning', 'Taproot', 'HTLC'],
+    description:
+      'Vision holistique de l\'écosystème multi-layer: mainchain, Lightning, Liquid, sidechain; SegWit, Taproot, MuSig2; convergence vers paiements programmables.',
+    href: '/courses/connecting-bitcoin-layers.html',
+  },
 ]
 
 export const courseDetails = {
@@ -476,5 +528,264 @@ export const courseDetails = {
       'Ajouter un mode “1 page” imprimable pour révision rapide.',
       'Associer chaque notion à un mini exercice pratique.',
     ],
+  },  'ark': {
+    title: 'ARK — Bitcoin Advanced Layer',
+    subtitle: 'Protocole de paiement pour UX simplifiée sans perte de souveraineté.',
+    date: '2026-03-22',
+    author: 'Plan B Notes',
+    duration: '28 min read',
+    intro:
+      'ARK résout les limites UX de Lightning en mutualisant la liquidité via un serveur coordinateur. Transactions rapides, onboarding simple, mais avec préservation de la souveraineté Bitcoin.',
+    sections: [
+      {
+        id: 'ark-definition',
+        title: '1. Qu\'est-ce qu\'ARK ?',
+        paragraphs: [
+          'ARK est un protocole de paiement off-chain qui regroupe plusieurs utilisateurs dans une pool de liquidité coordonnée.',
+          'Contrairement aux canaux Lightning bilatéraux, ARK mutualise la liquidité pour simplifier l\'UX et l\'onboarding.',
+        ],
+        bullets: [
+          'Transactions rapides sans canal individuel.',
+          'Liquidité mutualisée plutôt que gérée individuellement.',
+          'Onboarding accessible sans notion technique.',
+          'Coordination par un serveur ARK mais sans custodie complète.',
+        ],
+        badges: ['Pooled Liquidity', 'UX-First', 'Sovereign'],
+      },
+      {
+        id: 'problem-solved',
+        title: '2. Problème qu\'ARK résout',
+        paragraphs: [
+          'Lightning nécessite ouverture de canal (coûteux on-chain), gestion de liquidité inbound/outbound, reste en ligne, et comprendre des concepts techniques complexes.',
+          'ARK abstraite ces complications et fournit une UX plus proche du custodial tout en gardant contrôle des clés.',
+        ],
+        bullets: [
+          'Frais d\'ouverture canal éliminés initialement.',
+          'Gestion de liquidité inbound/outbound abstraite.',
+          'Onboarding simplifié pour grand public.',
+          'Risque de mauvaise configuration réduit.',
+        ],
+      },
+      {
+        id: 'ark-vs-lightning',
+        title: '3. Comparaison ARK vs Lightning',
+        paragraphs: [
+          'ARK vise une meilleure UX que Lightning en sacrifiant certaines propriétés mais gardant souveraineté keying.',
+        ],
+        table: {
+          headers: ['Critère', 'Lightning', 'ARK'],
+          rows: [
+            ['UX', 'Complexe', 'Simple'],
+            ['Liquidité', 'À gérer', 'Mutualisée'],
+            ['Onboarding', 'Difficile', 'Facile'],
+            ['Dépendance serveur', 'Faible', 'Moyenne'],
+          ],
+        },
+      },
+    ],
+    references: [
+      'Plan B internal notes — ARK module',
+      'ARK whitepaper',
+      'Contrast avec Lightning Network',
+    ],
+    nextSteps: [
+      'Ajouter runbook d\'intégration ARK client.',
+      'Comparer empiriquement ARK vs Lightning UX.',
+      'Créer exemple mini-ARK serveur.',
+    ],
   },
-}
+  'bitcoin-offline-resilience': {
+    title: 'Bitcoin Offline & Résilience Réseau',
+    subtitle: 'Transactions signées hors-ligne et paiements sans connexion Internet.',
+    date: '2026-03-22',
+    author: 'Plan B Notes',
+    duration: '35 min read',
+    intro:
+      'Bitcoin permet créer et signer transactions sans Internet. Les transférer offline (SMS, Bluetooth, LoRa, papier), les relayer quand internet revient. Cashu ajoute paiements instantanés offline.',
+    sections: [
+      {
+        id: 'offline-principle',
+        title: '1. Principe fondamental',
+        paragraphs: [
+          'Une transaction Bitcoin est simplement un message signé: structure de données + clé privée signature.',
+          'Elle peut transiter par n\'importe quel canal: Internet, SMS, radio, papier.',
+        ],
+        bullets: [
+          'Transactions = fichier hex sérialisé et signé.',
+          'Bitcoin n\'a besoin Internet que pour broadcast et inclusion bloc.',
+          'Création signature est 100% offline.',
+          'Transport peut être SMS, Bluetooth mesh, LoRa, fichier, papier.',
+        ],
+        badges: ['Signed Data', 'Transport-Agnostic', 'Resilience'],
+      },
+      {
+        id: 'offline-send',
+        title: '2. Envoi Bitcoin sans Internet',
+        paragraphs: [
+          'Trois étapes: créer + signer offline, transporter, puis broadcast en ligne.',
+          'Aucune clé privée ne voyage sur Internet ni sur la blockchain avant confirmation.',
+        ],
+        bullets: [
+          'Étape 1: Wallet construit et signe tx en local.',
+          'Étape 2: Export hex et transport via canal offline.',
+          'Étape 3: Quelqu\'un en ligne reçoit hex et le broadcast.',
+          'Settlement: transaction confirmée, fonds sécurisés.',
+        ],
+      },
+      {
+        id: 'mesh-cashu',
+        title: '3. Cashu et Réseaux Mesh',
+        paragraphs: [
+          'Cashu: protocole e-cash offline. Token = preuve cryptographique signée par mint.',
+          'Mesh Bluetooth: réseau P2P décentralisé sans infrastructure centrale.',
+        ],
+        bullets: [
+          'Token Cashu: transportable offline, redeemable plus tard.',
+          'Mesh Bluetooth: 10-100m, dépend densité urbaine.',
+          'LoRa: kilomètres mais débit très faible.',
+          'Résilience offline en conditions dégradées.',
+        ],
+      },
+    ],
+    references: [
+      'Plan B internal notes — Offline & Resilience module',
+      'Cashu protocol spec',
+      'Mesh networking documentation',
+    ],
+    nextSteps: [
+      'Créer démo LoRa tx relay.',
+      'Tester Cashu token generation.',
+      'Runbook transaction offline par wallet.',
+    ],
+  },
+  'building-on-rgb': {
+    title: 'Building on RGB — Smart Contracts & Assets',
+    subtitle: 'Validation côté client et écosystème d\'actifs sur Bitcoin.',
+    date: '2026-03-22',
+    author: 'Plan B Notes',
+    duration: '32 min read',
+    intro:
+      'RGB est un protocole permettant créer actifs, tokens et smart contracts sur Bitcoin sans modifier le protocole. Repose sur validation côté client et commitments Taproot.',
+    sections: [
+      {
+        id: 'rgb-definition',
+        title: '1. Qu\'est-ce que RGB ?',
+        paragraphs: [
+          'RGB permet créer assets, tokens et smart contracts sur Bitcoin sans fork.',
+          'Innovation clé: données et logique off-chain, validées localement plutôt que globalement.',
+        ],
+        bullets: [
+          'Crée des actifs (tokens, stablecoins) sur Bitcoin.',
+          'Crée smart contracts custom.',
+          'Données stockées côté client, pas sur blockchain.',
+          'Bitcoin fournit sécurité et horodatage seulement.',
+        ],
+        badges: ['Client-Side', 'Trustless', 'Confidential'],
+      },
+      {
+        id: 'client-validation',
+        title: '2. Client-Side Validation',
+        paragraphs: [
+          'Principe central: chaque participant valide localement les données nécessaires plutôt que tous validant tout.',
+          'Contraste fort avec blockchain classique où chaque nœud valide toute l\'histoire.',
+        ],
+        bullets: [
+          'Bitcoin classique: données on-chain, tous valident tout.',
+          'RGB: données off-chain, validation locale.',
+          'Conséquence: très haute scalabilité et confidentialité.',
+          'Réduction massive charge réseau et stockage.',
+        ],
+      },
+      {
+        id: 'rgb-taproot',
+        title: '3. RGB et Taproot',
+        paragraphs: [
+          'Taproot est essentiel pour RGB: permet insérer commitments sans visibilité excessive.',
+          'Dépôts utilisateurs et smart contracts bénéficient de privacy et efficiency.',
+        ],
+        table: {
+          headers: ['Layer', 'Rôle', 'Données'],
+          rows: [
+            ['Bitcoin', 'Ancre sécurité + timestamp', 'Hash commitment uniquement'],
+            ['RGB', 'Smart contract + assets', 'Full state off-chain'],
+          ],
+        },
+      },
+    ],
+    references: [
+      'Plan B internal notes — RGB module',
+      'RGB whitepaper',
+      'RGB SDK documentation',
+    ],
+    nextSteps: [
+      'Créer mini token RGB de test.',
+      'Implémenter validator RGB simple.',
+      'Exemple Cashu + RGB combo.',
+    ],
+  },
+  'connecting-bitcoin-layers': {
+    title: 'Connecting Bitcoin Layers',
+    subtitle: 'Architecture multi-couches et paiements programmables.',
+    date: '2026-03-22',
+    author: 'Plan B Notes',
+    duration: '42 min read',
+    intro:
+      'Bitcoin évolue d\'une simple blockchain vers un écosystème multi-layer interconnecté. Lightning, Liquid, RGB, Ark partagent base sécurité Bitcoin tout en offrant propriétés différentes.',
+    sections: [
+      {
+        id: 'bitcoin-evolution',
+        title: '1. Bitcoin comme système modulaire',
+        paragraphs: [
+          'Mainchain Bitcoin fournit sécurité et décentralisation max, mais lent et coûteux.',
+          'Layers compensent: paiements rapides (Lightning), confidentialité (Liquid), smart contracts (RGB), UX (Ark).',
+        ],
+        bullets: [
+          'Mainchain: sécurité max, lenteur acceptable, coûts élevés.',
+          'Lightning: paiements instantanés, trustless, off-chain.',
+          'Liquid: sidechain, actifs rapides, confidentiel.',
+          'RGB: smart contracts, assets, validation client.',
+          'Ark: UX simplifié, liquidité mutualisée.',
+        ],
+        badges: ['Mainchain', 'Sidechains', 'State Channels', 'Off-Chain'],
+      },
+      {
+        id: 'lightning-core',
+        title: '2. Lightning Network',
+        paragraphs: [
+          'Layer 2 principal Bitcoin: canaux state-based permettant paiements instantanés off-chain.',
+          'Sécurité provient timelock + HTLC, pas de custodial.',
+        ],
+        bullets: [
+          'Ouverture canal: dépôt on-chain Bitcoin.',
+          'Paiement: mise à jour state off-chain, quasi-instantané.',
+          'Routage multi-hop: transferts via tiers intermédiaires.',
+          'Fermeture: settlement final on-chain.',
+        ],
+      },
+      {
+        id: 'convergence-vision',
+        title: '3. Convergence et vision future',
+        paragraphs: [
+          'Bitcoin devient base resilient, couches permettent paiements, assets, smart contracts programmables.',
+          'Taproot Assets + L402 enabling paiements API natifs.',
+        ],
+        bullets: [
+          'Bitcoin mainchain: sécurité, résistance censure.',
+          'Lightning + Ark: paiements scalables.',
+          'RGB: smart contracts et assets.',
+          'Wallets: interface unifiée masquant complexity.',
+          'APIs: L402 pour paiement sans trust.',
+        ],
+      },
+    ],
+    references: [
+      'Plan B internal notes — Layers architecture',
+      'BOLT specifications (Lightning)',
+      'RGB whitepaper',
+    ],
+    nextSteps: [
+      'Mapper chaque layer à composants Software.',
+      'Créer scenario payments traversant multiple layers.',
+      'Documenter trade-offs layer par use case.',
+    ],
+  },}
